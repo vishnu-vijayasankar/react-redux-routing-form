@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// import router & history
+import { Router, Route, Switch } from 'react-router-dom';
+import { history} from './helpers';
+import PublicRoutes from './publicRoutes';
+import { connect } from 'react-redux';
+import DefaultHeader from './containers/DefaultLayout/DefaultHeader'; 
+import { alertActions } from './actions';
+
+class App extends Component {
+  
+  constructor(props) {
+    super(props);
+
+    const { dispatch } = this.props;
+    history.listen((location, action) => {
+        // clear alert on location change
+        dispatch(alertActions.clear());
+    });
+  }
+
+
+  render() {
+    const routePublicComponents = PublicRoutes.map(({path, component}, key) => <Route exact path={path} component={component} key={key} />);
+    const { loader } = this.props;
+    return (
+      <Router history={history}>
+        {/* <ScrollToTop> */}
+        <div className="App">
+          {loader}
+          <DefaultHeader { ...this.props } />
+            <Switch>
+              {routePublicComponents}
+            </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+function mapStateToProps(state){
+  return {
+    store:""
+    // loader: state.loader.loading
+  }
+}
+
+export default connect(mapStateToProps)(App);
