@@ -1,18 +1,11 @@
 /* -- set app title --*/
-const AppTitle = "SemiChanges";
+const AppTitle = " ";
 
 /* -- set app mode -- */
 const AppMode = ["development"];
 
 /* -- set API URLs --*/
 const development = "http://localhost:4000";
-
-
-
-
-
-
-
 
 
 /* -- API URL Configuration --*/
