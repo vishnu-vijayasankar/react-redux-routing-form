@@ -1,3 +1,8 @@
+/**
+* @Developed by @ArihantBhugari
+*/
+
+
 import React, { Component } from 'react';
 
 class VerifyEmail extends Component {
