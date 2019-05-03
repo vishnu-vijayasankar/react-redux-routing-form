@@ -4,7 +4,7 @@ import Register from './views/pages/Register';
 
 const PublicRoutes = [
 	{
-		path: '/register',
+		path: '/',
 		component: Register
 	}
 ];

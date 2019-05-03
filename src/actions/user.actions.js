@@ -24,7 +24,7 @@ function registerUser(email, password, firstName, lastName) {
                     }
                 },
                 error => {
-                    history.push('/register');
+                    history.push('/');
                     dispatch(failure(error));
                     dispatch(alertActions.error(serverOffError()));
                 }
